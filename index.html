@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        justify-content: center;
+        align-items: center;
+      }
+      button {
+        background-color: #4caf50; /* green background */
+        color: white; /* white text */
+        border: none; /* remove default border */
+        padding: 10px 20px; /* space inside button */
+        text-align: center; /* center text */
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 8px; /* rounded corners */
+        cursor: pointer; /* hand cursor */
+        transition: background-color 0.3s ease; /* smooth hover effect */
+      }
+
+      button:hover {
+        background-color: #45a049; /* darker green on hover */
+      }
+      /* Input Styling */
+      #searching {
+        padding: 10px;
+        width: 250px;
+        font-size: 16px;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        outline: none;
+        transition: border-color 0.3s ease;
+      }
+
+      #searching:focus {
+        border-color: #4caf50;
+      }
+      /* Image Styling */
+      img {
+        max-width: 400px; /* keeps it from getting too big */
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
+      }
+
+      img:hover {
+        transform: scale(1.05); /* zoom-in effect on hover */
+      }
+    </style>
+  </head>
+  <body>
+<img src="https://placehold.co/400x300?text=Loading" alt="Random cat gif" />
+    <input type="text" id="searching" placeholder="search here" />
+    <button>New random cat GIF</button>
+    <!-- //https://api.giphy.com/v1/gifs/translate?api_key=l1wEzY4jfVaD1bjrRNuQFtWwYuDFf2iH&s=cats -->
+    <script>
+      const img = document.querySelector("img");
+      const butn = document.querySelector("button");
+      const searchInput = document.querySelector("#searching");
+
+      butn.addEventListener("click", function () {
+        let searchQuery = searchInput.value;
+     
+        if (searchQuery === "") {
+          searchQuery = "cats";
+        } else {
+          searchQuery = searchInput.value;
+        }
+   img.src = "https://via.placeholder.com/400x300?text=Loading...";
+        fetch(
+          `https://api.giphy.com/v1/gifs/translate?api_key=l1wEzY4jfVaD1bjrRNuQFtWwYuDFf2iH&s=${searchQuery}`
+        )
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (response) {
+            console.log(response);
+            img.src = response.data.images.original.url;
+          })
+          .catch(function (error) {
+            console.error("Fetch failed:", error);
+            img.src = "https://media.giphy.com/media/14uQ3cOFteDaU/giphy.gif"; // error fallback GIF
+          });
+      });
+    </script>
+  </body>
+</html>

@@ -2,9 +2,9 @@
 
 GIF Search App
 
-#A simple web application that fetches and displays GIFs using the Giphy API. Users can search for specific GIFs or click a button to fetch a random GIF.
+# A simple web application that fetches and displays GIFs using the Giphy API. Users can search for specific GIFs or click a button to fetch a random GIF.
 
-#Features
+# Features
 
 Display random GIFs by default (cats).
 
@@ -16,7 +16,7 @@ Asynchronous fetching without refreshing the page.
 
 Error handling for network issues.
 
-#Technologies Used
+# Technologies Used
 
 HTML
 
@@ -27,7 +27,7 @@ JavaScript (Fetch API)
 Giphy API
 
 
-##Notes:
+## Notes:
 
 The app uses asynchronous fetch calls to retrieve GIFs without reloading the page.
 
